@@ -23,15 +23,15 @@ Currently, ```brownian-manifold``` comes with two classes:
 ![](https://github.com/hankbesser/brownian-manifold/blob/master/notebook_examples/figures/2sphere_manifold_4subp_400000.png)
 
 ### Notebooks
+
 Checkout the notebooks for a guide on how to use browian-manifold and/or to the see implementation of the various methods;
 
 #### How to use ```Manifold```?
 
 go to:
-
 - [manifold_example.ipynb](https://github.com/hankbesser/brownian-manifold/blob/master/notebook_examples/manifold_example.ipynb)
-### Installation
 
+### Dependencies
 
 The three dependencies needed for ```brownian-manifold``` are distributed with [Anaconda](https://www.continuum.io/downloads) and [Canopy](https://www.enthought.com/products/canopy/), but can also be installed through other means.
 - ```NumPy``` >= 1.6.1
