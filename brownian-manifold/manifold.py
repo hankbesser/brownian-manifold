@@ -111,13 +111,13 @@ class Manifold(object):
             raise NameError('{0} is not a recognized\
             manifold!'.format(self.manifold))
 
-    
+
     def __repr__(self):
         """An internal representation"""
         return "{0}(manifold='{1}')".format(
                 self.__class__.__name__, self.manifold)
-    
-    
+
+
     def __str__(self):
         """The string to be printed"""
         return "The manifold is a {0}!".format(self.manifold)
@@ -166,7 +166,7 @@ class Manifold(object):
         if manifold is 'cylinder':
 
             raise NameError('the cylinder manifold is not used\
-            for the simulate_brownian_sphere method!\
+            for the simulate_brownian_sphere method!
             Use simulate_brownian_cylinder method instead!')
 
         if manifold not in ('sphere','cylinder'):
@@ -191,7 +191,7 @@ class Manifold(object):
         # use plot_simulation_sphere method to mess around with plot
         if plot is True:
             self.plot_brownian_sphere(browniansphere)
-        
+
         return browniansphere
 
 
@@ -230,7 +230,7 @@ class Manifold(object):
         if any(x > self.n_steps for x in steptoplot):
             raise ValueError('you chose step(s) > {0} (the total steps)'\
                              .format(self.n_steps))
-        
+
         if any(x <=0 for x in steptoplot):
             raise ValueError('you chose one or more invalid \
             step(s) to plot')
@@ -408,7 +408,7 @@ class Manifold(object):
         # Show the sphere (with defaults) or not
         if plot is True:
             self.plot_sphere(spheresurface)
-        
+
         return spheresurface
 
 
@@ -490,7 +490,7 @@ class Manifold(object):
             raise NameError('the sphere manifold is not used\
             for the get_cylinder method!\
             Use get_sphere method instead!')
-        
+
         if manifold not in ('sphere','cylinder'):
             raise NameError('{0} is not a recognized\
             manifold!'.format(manifold))
@@ -500,7 +500,7 @@ class Manifold(object):
         # Show the cylinder (with defaults) or not
         if plot is True:
             self.plot_cylinder(cylindersurface)
-        
+
         return cylindersurface
 
 
