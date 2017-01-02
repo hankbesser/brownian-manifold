@@ -1,11 +1,11 @@
 import numpy as np
+from copy import deepcopy
 from scipy import stats
 import matplotlib.pyplot as plt
 # Ignore the unused warning: Axes3D import
 # enables projection='3d' to be used without error
 from mpl_toolkits.mplot3d import Axes3D
-from utils import vector_cross, arctan2,\
-                  surface_sphere, surface_cylinder
+from . import utils
 
 class Manifold(object):
     """
@@ -315,7 +315,7 @@ class Manifold(object):
                                  size = self.n_steps)
         step_size = np.sqrt(x_coord**2 +y_coord**2)
         # Smooths the step onto the sphere
-        theta = arctan2(y_coord,x_coord)
+        theta = utils.arctan2(y_coord,x_coord)
         phi = step_size/self.radius_sphere
         smoothed_positions=np.array([
                                 self.radius_sphere*np.cos(theta)*np.sin(phi),
@@ -354,7 +354,7 @@ class Manifold(object):
                 Euclidian Space--i.e. the north pole of the sphere.
         """
 
-        cross = vector_cross(v=v,w=np.array([0,0,1]))
+        cross = utils.vector_cross(v=v,w=np.array([0,0,1]))
         # normalizes the axis vector
         cross_norm = cross/(np.sqrt(np.dot(cross,cross)))
         cp_matrix = np.array([[0,-cross_norm[2],cross_norm[1]],\
@@ -404,7 +404,7 @@ class Manifold(object):
             raise NameError('{0} is not a recognized\
             manifold!'.format(manifold))
         #------------------------------------------------------------
-        spheresurface = surface_sphere(self.radius_sphere)
+        spheresurface = utils.urface_sphere(self.radius_sphere)
         # Show the sphere (with defaults) or not
         if plot is True:
             self.plot_sphere(spheresurface)
@@ -495,7 +495,7 @@ class Manifold(object):
             raise NameError('{0} is not a recognized\
             manifold!'.format(manifold))
         #------------------------------------------------------------
-        cylindersurface = surface_cylinder(self.radius_cylinder,
+        cylindersurface = utils.surface_cylinder(self.radius_cylinder,
                                            self.height_cylinder)
         # Show the cylinder (with defaults) or not
         if plot is True:
