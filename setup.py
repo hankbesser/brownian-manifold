@@ -27,5 +27,5 @@ if __name__ == "__main__":
           download_url=DOWNLOAD_URL,
           long_description=open('README.md').read(),
           platforms='any',
-          package_dir={'brownian-manifold': 'brownian_manifold'},
+          package_dir={'brownian-manifold': 'brownian_manifold'}
           )
