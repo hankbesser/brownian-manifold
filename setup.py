@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 
-import setuptools 
+import setuptools
 from numpy.distutils.core import setup
 
 descr = """Tools to simulate and visualize Brownian motion on manifolds"""
@@ -28,5 +28,4 @@ if __name__ == "__main__":
           long_description=open('README.md').read(),
           platforms='any',
           package_dir={'brownian-manifold': 'brownian_manifold'},
-          packages=['brownian-manifold'],
           )
