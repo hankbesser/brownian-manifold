@@ -166,7 +166,7 @@ class Manifold(object):
         if manifold is 'cylinder':
 
             raise NameError('the cylinder manifold is not used\
-            for the simulate_brownian_sphere method!
+            for the simulate_brownian_sphere method!\
             Use simulate_brownian_cylinder method instead!')
 
         if manifold not in ('sphere','cylinder'):
