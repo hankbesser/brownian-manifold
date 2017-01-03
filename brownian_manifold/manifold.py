@@ -90,8 +90,8 @@ class Manifold(object):
         Initialize the object
         """
         self.manifold = manifold
-        self.final_time = final_time
-        self.n_steps = n_steps
+        self.final_time = float(final_time)
+        self.n_steps = float(n_steps)
         self.step_size = (self.final_time/self.n_steps)
         # Assign random rotation matrix parameter
         # -------------------------------
