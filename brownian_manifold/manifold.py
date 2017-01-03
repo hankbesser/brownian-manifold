@@ -42,7 +42,7 @@ class Manifold(object):
     final_time: float, total time of simulation
     (assumption: initial time of simulation is always 0)
 
-    n_steps: float, number of steps (i.e the intervals to split [0,final_time])
+    n_steps: int, number of steps (i.e the intervals to split [0,final_time])
 
     radius_sphere: float, radius of sphere
 
@@ -91,7 +91,7 @@ class Manifold(object):
         """
         self.manifold = manifold
         self.final_time = float(final_time)
-        self.n_steps = float(n_steps)
+        self.n_steps = int(n_steps)
         self.step_size = (self.final_time/self.n_steps)
         # Assign random rotation matrix parameter
         # -------------------------------
@@ -508,6 +508,10 @@ class Manifold(object):
                       manifold=None,
                       color='cyan', alpha=0.2,
                       antialiased=False, has_title=True,show_axes=False):
+        
+        
+        if manifold is None:
+            manifold = self.manifold
         # for debugging purposes- does not affect functionality
         #-------------------------------------------------------------
         if manifold is 'sphere':
