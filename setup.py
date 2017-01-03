@@ -1,6 +1,5 @@
 from setuptools import find_packages
 from numpy.distutils.core import setup
-from os import path
 
 descr = """Tools to simulate and visualize Brownian motion on manifolds."""
 
@@ -27,5 +26,5 @@ if __name__ == "__main__":
               'Programming Language :: Python',
           ],
           platforms='any',
-          packages=find_packages(),
+          packages=['brownian_manifold'],
           )
