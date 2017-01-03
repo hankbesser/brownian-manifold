@@ -510,7 +510,6 @@ class Manifold(object):
                       color='cyan', alpha=0.2,
                       antialiased=False, has_title=True,show_axes=False):
 
-
         if manifold is None:
             manifold = self.manifold
         # for debugging purposes- does not affect functionality
