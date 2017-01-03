@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 # Ignore the unused warning: Axes3D import
 # enables projection='3d' to be used without error
 from mpl_toolkits.mplot3d import Axes3D
+
 from utils import vector_cross, arctan2, surface_sphere, surface_cylinder
 
 class Manifold(object):
@@ -508,8 +509,8 @@ class Manifold(object):
                       manifold=None,
                       color='cyan', alpha=0.2,
                       antialiased=False, has_title=True,show_axes=False):
-        
-        
+
+
         if manifold is None:
             manifold = self.manifold
         # for debugging purposes- does not affect functionality
