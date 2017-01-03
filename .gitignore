@@ -1,5 +1,4 @@
 __pycache__/
-*.py[cod]
-*$py.class
+*.pyc
 .ipynb_checkpoints/
 example_notebooks/.ipynb_checkpoints/
