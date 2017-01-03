@@ -1,31 +1,21 @@
-#! /usr/bin/env python3
+from setuptools import setup, find_packages
 
+from os import path
 
-import setuptools
-from numpy.distutils.core import setup
+here = path.abspath(path.dirname(__file__))
 
-descr = """Tools to simulate and visualize Brownian motion on manifolds"""
+# Get the long description from the README file
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
-
-DISTNAME = 'brownian-manifold'
-DESCRIPTION = descr
-MAINTAINER = 'Hank Besser'
-MAINTAINER_EMAIL = 'hbess1113@gmail.com'
-LICENSE = 'MIT'
-DOWNLOAD_URL = 'https://github.com/hankbesser/brownian-manifold.git'
-VERSION = '0.1.0'
-
-
-
-if __name__ == "__main__":
-    setup(name=DISTNAME,
-          maintainer=MAINTAINER,
-          maintainer_email=MAINTAINER_EMAIL,
-          description=DESCRIPTION,
-          license=LICENSE,
-          version=VERSION,
-          download_url=DOWNLOAD_URL,
-          long_description=open('README.md').read(),
-          platforms='any',
-          package_dir={'brownian-manifold': 'brownian_manifold'}
-          )
+setup(name='brownian-manifold',
+    maintainer='Hank Besser',
+    maintainer_email='hbess1113@gmail.com',
+    description='Tools to simulate and visualize Brownian motion on manifolds',
+    long_description=long_description,
+    license='MIT',
+    version='0.1.0',
+    url = 'https://github.com/hankbesser/brownian-manifold',
+    download_url='https://github.com/hankbesser/brownian-manifold.git',
+    packages=find_packages(),
+)

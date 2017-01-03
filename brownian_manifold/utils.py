@@ -121,6 +121,3 @@ def surface_cylinder(radius, height):
                                   y_blank_cylinder,
                                   z_blank_cylinder]))
     return cylinder_surface
-    
-    
-

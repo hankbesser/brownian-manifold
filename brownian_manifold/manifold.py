@@ -1,11 +1,10 @@
 import numpy as np
-from copy import deepcopy
 from scipy import stats
 import matplotlib.pyplot as plt
 # Ignore the unused warning: Axes3D import
 # enables projection='3d' to be used without error
 from mpl_toolkits.mplot3d import Axes3D
-from . import utils
+from utils import vector_cross, arctan2, surface_sphere, surface_cylinder
 
 class Manifold(object):
     """
@@ -108,7 +107,7 @@ class Manifold(object):
     # for debugging purposes- does not affect functionality
     #-------------------------------------------------------------
         if self.manifold not in ('sphere', 'cylinder'):
-            raise NameError('{0} is not a recognized\
+            raise NameError('{0} is not a recognized\n\
             manifold!'.format(self.manifold))
 
 
@@ -165,12 +164,12 @@ class Manifold(object):
         #-------------------------------------------------------------
         if manifold is 'cylinder':
 
-            raise NameError('the cylinder manifold is not used\
-            for the simulate_brownian_sphere method!\
+            raise NameError('the cylinder manifold is not used\n\
+            for the simulate_brownian_sphere method!\n\
             Use simulate_brownian_cylinder method instead!')
 
         if manifold not in ('sphere','cylinder'):
-            raise NameError('{0} is not a recognized\
+            raise NameError('{0} is not a recognized\n\
             manifold!'.format(manifold))
         #------------------------------------------------------------
         smoothpositions, rotationmatricies= self._smooth_and_rotate()
@@ -210,12 +209,12 @@ class Manifold(object):
         # for debugging purposes- does not affect functionality
         #-------------------------------------------------------------
         if manifold is 'cylinder':
-            raise NameError('the cylinder manifold is not used\
-            for the plot_brownian_sphere method!\
+            raise NameError('the cylinder manifold is not used\n\
+            for the plot_brownian_sphere method!\n\
             Use plot_brownian_cylinder method instead!')
 
         if manifold not in ('sphere','cylinder'):
-            raise NameError('{0} is not a recognized\
+            raise NameError('{0} is not a recognized\n\
             manifold!'.format(manifold))
         #------------------------------------------------------------
         if steptoplot is None:
@@ -232,7 +231,7 @@ class Manifold(object):
                              .format(self.n_steps))
 
         if any(x <=0 for x in steptoplot):
-            raise ValueError('you chose one or more invalid \
+            raise ValueError('you chose one or more invalid\n\
             step(s) to plot')
 
         fig = plt.figure(figsize=(10,10))
@@ -315,7 +314,7 @@ class Manifold(object):
                                  size = self.n_steps)
         step_size = np.sqrt(x_coord**2 +y_coord**2)
         # Smooths the step onto the sphere
-        theta = utils.arctan2(y_coord,x_coord)
+        theta = arctan2(y_coord,x_coord)
         phi = step_size/self.radius_sphere
         smoothed_positions=np.array([
                                 self.radius_sphere*np.cos(theta)*np.sin(phi),
@@ -354,7 +353,7 @@ class Manifold(object):
                 Euclidian Space--i.e. the north pole of the sphere.
         """
 
-        cross = utils.vector_cross(v=v,w=np.array([0,0,1]))
+        cross = vector_cross(v=v,w=np.array([0,0,1]))
         # normalizes the axis vector
         cross_norm = cross/(np.sqrt(np.dot(cross,cross)))
         cp_matrix = np.array([[0,-cross_norm[2],cross_norm[1]],\
@@ -396,15 +395,15 @@ class Manifold(object):
         # for debugging purposes- does not affect functionality
         #-------------------------------------------------------------
         if manifold is 'cylinder':
-            raise NameError('the cylinder manifold is not used\
-            for the get_sphere method!\
+            raise NameError('the cylinder manifold is not used\n\
+            for the get_sphere method!\n\
             Use get_cylinder method instead!')
 
         if manifold not in ('sphere','cylinder'):
-            raise NameError('{0} is not a recognized\
+            raise NameError('{0} is not a recognized\n\
             manifold!'.format(manifold))
         #------------------------------------------------------------
-        spheresurface = utils.urface_sphere(self.radius_sphere)
+        spheresurface = surface_sphere(self.radius_sphere)
         # Show the sphere (with defaults) or not
         if plot is True:
             self.plot_sphere(spheresurface)
@@ -423,12 +422,12 @@ class Manifold(object):
         # for debugging purposes- does not affect functionality
         #-------------------------------------------------------------
         if manifold is 'cylinder':
-            raise NameError('the cylinder manifold is not used\
-            for the plot_sphere method!\
+            raise NameError('the cylinder manifold is not used\n\
+            for the plot_sphere method!\n\
             Use plot_cylinder method instead!')
 
         if manifold not in ('sphere','cylinder'):
-            raise NameError('{0} is not a recognized\
+            raise NameError('{0} is not a recognized\n\
             manifold!'.format(manifold))
         #------------------------------------------------------------
         plt.figure()
@@ -487,15 +486,15 @@ class Manifold(object):
         # for debugging purposes- does not affect functionality
         #-------------------------------------------------------------
         if manifold is 'sphere':
-            raise NameError('the sphere manifold is not used\
-            for the get_cylinder method!\
+            raise NameError('the sphere manifold is not used\n\
+            for the get_cylinder method!\n\
             Use get_sphere method instead!')
 
         if manifold not in ('sphere','cylinder'):
-            raise NameError('{0} is not a recognized\
+            raise NameError('{0} is not a recognized\n\
             manifold!'.format(manifold))
         #------------------------------------------------------------
-        cylindersurface = utils.surface_cylinder(self.radius_cylinder,
+        cylindersurface = surface_cylinder(self.radius_cylinder,
                                            self.height_cylinder)
         # Show the cylinder (with defaults) or not
         if plot is True:
@@ -513,12 +512,12 @@ class Manifold(object):
         #-------------------------------------------------------------
         if manifold is 'sphere':
 
-            raise NameError('the sphere manifold is not used\
+            raise NameError('the sphere manifold is not used\n\
             for the plot_cylinder method!\
             Use plot_sphere method instead!')
 
         if manifold not in ('sphere','cylinder'):
-            raise NameError('{0} is not a recognized\
+            raise NameError('{0} is not a recognized\n\
             manifold!'.format(manifold))
         #------------------------------------------------------------
         plt.figure()
