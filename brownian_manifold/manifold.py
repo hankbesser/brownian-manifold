@@ -13,8 +13,8 @@ class Manifold(object):
     visualizing the trajectory of Brownian motion on a manifold embedded
     in three-dimensional Euclidian space.
 
-    For the purpose of this class:
-    We allow for the simulation of Brownian Motion on two types of manifolds;
+    For the purpose of this class, We allow for the simulation of
+    Brownian Motion on two types of manifolds;
 
     1. A 2-sphere
 
