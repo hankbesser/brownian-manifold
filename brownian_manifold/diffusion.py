@@ -3,4 +3,4 @@ import matplotlib.pyplot as plt
 
 
 
-#class Diffusion(object):
+####class Diffusion(object):
