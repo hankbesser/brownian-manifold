@@ -507,7 +507,7 @@ class Manifold(object):
     # -----------------------------------------------------------------------
     def plot_cylinder(self, cylinder_surface,
                       manifold=None,
-                      color='cyan', alpha=0.2,
+                      color='cyan', alpha=0.15,
                       antialiased=False, has_title=True,show_axes=False):
 
         if manifold is None:
@@ -537,7 +537,7 @@ class Manifold(object):
             plt.title('Surface Plot: Finite Cylinder')
 
         ax.set_aspect('equal')
-        ax.view_init(elev=0)
+        ax.view_init(azim=-0.0005)
         ax.set_xlim(-self.height_cylinder,self.height_cylinder)
         ax.set_ylim(-self.height_cylinder,self.height_cylinder)
         ax.set_zlim(-self.height_cylinder,self.height_cylinder)
