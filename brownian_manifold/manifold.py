@@ -257,8 +257,8 @@ class Manifold(object):
                                c=timebar, cmap=colorbar,
                                marker=marker,
                                s=markersize,
-                               facecolor='0.5', lw = 0,
-                               label ='Snapshot at step {0}'.format(steptoplot[i]))
+                               facecolor='0.5', lw = 0,)
+                               #label ='Snapshot at step {0}'.format(steptoplot[i]))
 
             surface = self.get_sphere()
             ax.plot_surface(surface[0],
@@ -278,7 +278,7 @@ class Manifold(object):
             ax.set_zlim([-self.radius_sphere, self.radius_sphere])
             ax.set_aspect("equal")
             ax.tick_params(axis='both', which='both', pad=0.01)
-            ax.legend(fontsize=9,loc='best')
+            #ax.legend(fontsize=9,loc='best')
 
             if show_axes is False:
                 ax.set_axis_off()
@@ -286,8 +286,8 @@ class Manifold(object):
             cbar = fig.colorbar(brown, ax=ax,
                                 fraction=.12,pad=.053,
                                 shrink=0.5)
-            cbar.set_label('step number',size=8)
-            cbar.ax.tick_params(labelsize=8)
+            cbar.set_label('step number',size=10)
+            cbar.ax.tick_params(labelsize=10)
             plt.tight_layout()
             plt.tick_params(labelsize=7)
         plt.show()
