@@ -11,7 +11,7 @@ Currently, ```brownian-manifold``` comes with two classes:
 - ```Manifold``` helps you simulate Brownian motion on a 2-sphere or a finite cylinder. Also, helps you plot organized and visually informative manifolds/simulation data with many user-changeable parameters for each callable method.  
 - ```Diffusion``` still in the works at present-time: uses the ```Manifold``` objects in generating Brownian motion as a diffusion process--a Markov process with continuous sample paths. The object used for this representation features a compact manifold with two 2-spheres connected by a cylinder manifold with boundary.
 
-![](https://github.com/hankbesser/brownian-manifold/blob/master/notebook_examples/figures/2sphere_manifold_4subp_400000.png)
+![](https://github.com/hankbesser/brownian-manifold/blob/master/poster_and_figures/2_sphere_400000.png)
 
 ### Notebooks
 
@@ -32,7 +32,7 @@ The three dependencies needed for ```brownian-manifold``` are distributed with [
 
 ### Posters and more visuals
 
-* For the updated poster [click here](https://github.com/hankbesser/brownian-manifold/blob/master/notebook_examples/figures/Brownian_Motion_on_Manifolds_New_Hank.pdf)
+* For the updated poster [click here](https://github.com/hankbesser/brownian-manifold/blob/master/poster_and_figures/new_poster_hank.pdf)
 
 * For our initial motivations in creating ```brownian-manifold``` check out our [poster](http://mcl.math.uic.edu/wp-content/uploads/2016/08/F16-BMM-poster.pdf)   
 
