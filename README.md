@@ -1,21 +1,21 @@
 
 # brownian-manifold
 
-The most basic algorithms for approximating Brownian motion entail realizations of the Wiener process (the name for the mathematical construct of the Brownian motion) on n-dimensional Euclidean spaces that can scale to large n. However, the methods used to simulate a basic continuous-time Markov process on Euclidean space are not directly suited for simulations on more general Riemannian manifolds.
+The most basic algorithms for approximating Brownian motion entail realizations of the Wiener process (the name for the mathematical construct of the Brownian motion) on n-dimensional Euclidean spaces that can scale to large n. However, the methods used to simulate the basic continuous-time stochastic process on Euclidean space are not directly suited for simulations on more general Riemannian manifolds.
 
-In the context of Brownian motion on special manifolds: given a sequence of random trajectories on the manifold, the current state of the Brownian path captures relevant historical information, but, once known, is *independent* of the past (i.e. Markovian, where the current state characterizes the process). Also, Birkhoff's ergodic theorem tells us that after a sufficient amount of time, the system evolves to where it has no memory of its initial state. The Brownian motion visits *all* parts of the manifold *without any* systematic period.  Thus, the time-*average* of the Brownian motion’s trajectory equals the space-*average* almost everywhere (i.e. Ergodic) and the probability of finding all initial points on the manifold are expected to be the same (i.e. uniform coverage).
+In the context of Brownian motion on special manifolds: given a sequence of random trajectories on the manifold, the current state of the Brownian path captures relevant historical information, but, once known, is *independent* of the past (i.e. a Markov process, where the current state characterizes the process). Also, Birkhoff's ergodic theorem tells us that after a sufficient amount of time, the system evolves to where it has no memory of its initial state. The Brownian motion visits *all* parts of the manifold *without any* systematic period.  Thus, the time-*average* of the Brownian motion’s trajectory equals the space-*average* almost everywhere (i.e. Ergodic) and the probability of finding all initial points on the manifold are expected to be the same on the unit interval (i.e. uniform coverage on the manifold).
 
 To introduce numerical methods used for understanding properties of Brownian motion on manifolds we have created ```brownian-manifold```: a collection of Python tools that make simulations and visualizations easy and reproducible.
 
 Currently, ```brownian-manifold``` comes with two classes:
 - ```Manifold``` helps you simulate Brownian motion on a 2-sphere or a finite cylinder. Also, helps you plot organized and visually informative manifolds/simulation data with many user-changeable parameters for each callable method.  
-- ```Diffusion``` still in the works at present-time: uses the the ```Manifold``` objects in constructing Brownian motion as a diffusion process. The object used for the simulations/visualizations features two 2-spheres connected by a cylinder manifold with boundary.
+- ```Diffusion``` still in the works at present-time: uses the ```Manifold``` objects in generating Brownian motion as a diffusion process--a Markov process with continuous sample paths. The object used for this representation features a compact manifold with two 2-spheres connected by a cylinder manifold with boundary.
 
 ![](https://github.com/hankbesser/brownian-manifold/blob/master/notebook_examples/figures/2sphere_manifold_4subp_400000.png)
 
 ### Notebooks
 
-Checkout the notebooks for a guide on how to use browian-manifold and/or to the see implementation of the various methods;
+Checkout the notebooks for a guide on how to use brownian-manifold and/or to the see implementation of the various methods;
 
 #### How to use ```Manifold```?
 
@@ -28,15 +28,18 @@ The three dependencies needed for ```brownian-manifold``` are distributed with [
 - ```NumPy``` >= 1.6.1
 - ```SciPy``` >= 0.14
 - ```Matplotlib``` >= 1.5
+- ```Pandas``` (optional)
 
-### Previous Work
+### Posters and more visuals
 
-For our initial motivations in creating ```brownian-manifold``` check out our [poster](http://mcl.math.uic.edu/wp-content/uploads/2016/08/F16-BMM-poster.pdf)   
-- Gives a brief explanation Birkhoff's ergodic theorem in relation to Brownian motion on manifolds and also our algorithmic approaches. Many of approaches have changed and can be inspected in ```brownian-manifold``` modules themselves.
+* For the updated poster [click here](https://github.com/hankbesser/brownian-manifold/blob/master/notebook_examples/Brownian_Motion_on_Manifolds_New_Hank.pdf)
 
-To view some interactive plots check out of [plot.ly page](https://plot.ly/~besser2/) (just click out the blue box when asked to login)
-- Some nice looking Brownian motion on 2-sphere plots that were used for initial presentations and poster. For ```brownian-manifold``` only ```matplotlib``` was used. The powers of ```matplotlib``` made local plotting of large data sets easy and effective.
-- If you interested in how these ```plot.ly```  plots were contructed let us know.  
+* For our initial motivations in creating ```brownian-manifold``` check out our [poster](http://mcl.math.uic.edu/wp-content/uploads/2016/08/F16-BMM-poster.pdf)   
+
+* To view some interactive plots check out of [plot.ly page](https://plot.ly/~besser2/) (just click out the blue box when asked to login)
+  - If you interested in how these ```plot.ly```  plots were constructed let us know.  
+
+Details of the code can be inspected in the comments of the ```brownian-manifold``` modules.
 
 ### Installation
 

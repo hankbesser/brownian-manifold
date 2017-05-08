@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 # enables projection='3d' to be used without error
 from mpl_toolkits.mplot3d import Axes3D
 
-from utils import vector_cross, arctan2, surface_sphere, surface_cylinder
-
+#ignore the warning from * (import all functionality utils)
+from brownian_manifold.utils import *
 class Manifold(object):
     """
     Class that implements a few conveniences for simulating and
@@ -123,6 +123,81 @@ class Manifold(object):
         return "The manifold is a {0}!".format(self.manifold)
 
 
+    
+    
+    
+    # -----------------------------------------------------------------------
+    def _smooth_and_rotate(self):
+
+        """
+        Approximates Brownian motion on a 2-sphere by finding a
+        Brownian step in tangent space associated with the north pole
+        point of a 2-sphere embedded in three-dimensional Euclidian
+        space. The step found in Tangent Space is smoothed onto sphere and
+        a rotation matrix is computed (using the '_rot_matrix' class method)
+        and stored in memory for use in simulations.
+        """
+        rotation_matrices = self.store_matrices_
+        # Approximate Brownian Motion on sphere
+        # Finds a Brownian step on tangent plane
+        x_coord = stats.norm.rvs(scale=np.sqrt(self.step_size),
+                                 size = self.n_steps)
+        y_coord = stats.norm.rvs(scale=np.sqrt(self.step_size),
+                                 size = self.n_steps)
+        step_size = np.sqrt(x_coord**2 +y_coord**2)
+        # Smooths the step onto the sphere
+        theta = arctan2(y_coord,x_coord)
+        phi = step_size/self.radius_sphere
+        smoothed_positions=np.array([
+                                self.radius_sphere*np.cos(theta)*np.sin(phi),
+                                self.radius_sphere*np.sin(theta)*np.sin(phi),
+                                self.radius_sphere*np.cos(phi)])
+        for i in range(self.n_steps):
+            # rotates the sphere so that the
+            # last step is positioned at the North pole
+            # using the _rot_matrix (class method)
+            rotation_matrices[:,:,i] = self._rot_matrix(
+                                                    smoothed_positions[:,i],
+                                                    phi[i])
+        return smoothed_positions, rotation_matrices
+
+
+    # -----------------------------------------------------------------------
+    def _rot_matrix(self,v, phi):
+        """
+        Rotation matrix based on the Rodrigues rotation formula.
+        For more information about the expressions,
+        see the Rodrigues rotation formula wikipedia page at:
+        https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula
+
+        Parameters
+        ----------
+        v: array
+
+        phi: float
+
+        Returns
+        -------
+        R: ndarray, the resulting rotation matrix
+                that rotates the vector (parameter v) by an angle
+                (parameter phi) so that v is rotated in to
+                [0,0,radius_sphere] in three-dimensional
+                Euclidian Space--i.e. the north pole of the sphere.
+        """
+
+        cross = vector_cross(v=v,w=np.array([0,0,1]))
+        # normalizes the axis vector
+        cross_norm = cross/(np.sqrt(np.dot(cross,cross)))
+        cp_matrix = np.array([[0,-cross_norm[2],cross_norm[1]],\
+                          [cross_norm[2],0,-cross_norm[0]],\
+                          [-cross_norm[1],cross_norm[0],0]])
+        # identity matrix
+        I= np.eye(3)
+        R = I + np.sin(phi)*cp_matrix + (1 - np.cos(phi))*\
+                                    (np.dot(cp_matrix,cp_matrix))
+        return R
+
+    
     # -----------------------------------------------------------------------
     def simulate_brownian_sphere(self, manifold=None, plot=False):
         """
@@ -195,6 +270,7 @@ class Manifold(object):
         return browniansphere
 
 
+
     # -----------------------------------------------------------------------
     def plot_brownian_sphere(self, sphere_bm,
                                      manifold=None,
@@ -240,7 +316,7 @@ class Manifold(object):
         if has_title:
             fig.suptitle('Brownian Motion Simulation\n on 2-Sphere Manifold:\n Total Steps= {0}\n Step Size = {1:.5f}'\
                          .format(self.n_steps,self.step_size),
-                         fontsize=9, weight='bold')
+                         fontsize=14, weight='bold')
 
         for i in range(len(steptoplot)):
             if len(steptoplot)==1:
@@ -270,9 +346,9 @@ class Manifold(object):
             ax.set_xticks([-self.radius_sphere,0,self.radius_sphere])
             ax.set_yticks([-self.radius_sphere,0,self.radius_sphere])
             ax.set_zticks([-self.radius_sphere,0,self.radius_sphere])
-            ax.set_xlabel('X',linespacing=2.2,fontsize=8)
-            ax.set_ylabel('Y',linespacing=2.2,fontsize=8)
-            ax.set_zlabel('Z',linespacing=2.2,fontsize=8)
+            ax.set_xlabel('X',linespacing=2.2,fontsize=16)
+            ax.set_ylabel('Y',linespacing=2.2,fontsize=16)
+            ax.set_zlabel('Z',linespacing=2.2,fontsize=16)
             ax.set_xlim([-self.radius_sphere, self.radius_sphere])
             ax.set_ylim([-self.radius_sphere, self.radius_sphere])
             ax.set_zlim([-self.radius_sphere, self.radius_sphere])
@@ -286,85 +362,14 @@ class Manifold(object):
             cbar = fig.colorbar(brown, ax=ax,
                                 fraction=.12,pad=.053,
                                 shrink=0.5)
-            cbar.set_label('step number',size=10)
-            cbar.ax.tick_params(labelsize=10)
+            cbar.set_label('step number',size=14)
+            cbar.ax.tick_params(labelsize=14)
             plt.tight_layout()
-            plt.tick_params(labelsize=7)
+            plt.tick_params(labelsize=10)
         plt.show()
         #Save the full figure..
         #fig.savefig('name_of_file')
 
-
-    # -----------------------------------------------------------------------
-    def _smooth_and_rotate(self):
-
-        """
-        Approximates Brownian motion on a 2-sphere by finding a
-        Brownian step in tangent space associated with the north pole
-        point of a 2-sphere embedded in three-dimensional Euclidian
-        space. The step found in Tangent Space is smoothed onto sphere and
-        a rotation matrix is computed (using the '_rot_matrix' class method)
-        and stored in memory for use in simulations.
-        """
-        rotation_matrices = self.store_matrices_
-        # Approximate Brownian Motion on sphere
-        # Finds a Brownian step on tangent plane
-        x_coord = stats.norm.rvs(scale=np.sqrt(self.step_size),
-                                 size = self.n_steps)
-        y_coord = stats.norm.rvs(scale=np.sqrt(self.step_size),
-                                 size = self.n_steps)
-        step_size = np.sqrt(x_coord**2 +y_coord**2)
-        # Smooths the step onto the sphere
-        theta = arctan2(y_coord,x_coord)
-        phi = step_size/self.radius_sphere
-        smoothed_positions=np.array([
-                                self.radius_sphere*np.cos(theta)*np.sin(phi),
-                                self.radius_sphere*np.sin(theta)*np.sin(phi),
-                                self.radius_sphere*np.cos(phi)])
-        for i in range(self.n_steps):
-            # rotates the sphere so that the
-            # last step is positioned at the North pole
-            # using the _rot_matrix (class method)
-            rotation_matrices[:,:,i] = self._rot_matrix(
-                                                    smoothed_positions[:,i],
-                                                    phi[i])
-        return smoothed_positions, rotation_matrices
-
-
-    # -----------------------------------------------------------------------
-    def _rot_matrix(self,v, phi):
-        """
-        Rotation matrix based on the Rodrigues rotation formula.
-        For more information about the expressions,
-        see the Rodrigues rotation formula wikipedia page at:
-        https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula
-
-        Parameters
-        ----------
-        v: array
-
-        phi: float
-
-        Returns
-        -------
-        R: ndarray, the resulting rotation matrix
-                that rotates the vector (parameter v) by an angle
-                (parameter phi) so that v is rotated in to
-                [0,0,radius_sphere] in three-dimensional
-                Euclidian Space--i.e. the north pole of the sphere.
-        """
-
-        cross = vector_cross(v=v,w=np.array([0,0,1]))
-        # normalizes the axis vector
-        cross_norm = cross/(np.sqrt(np.dot(cross,cross)))
-        cp_matrix = np.array([[0,-cross_norm[2],cross_norm[1]],\
-                          [cross_norm[2],0,-cross_norm[0]],\
-                          [-cross_norm[1],cross_norm[0],0]])
-        # identity matrix
-        I= np.eye(3)
-        R = I + np.sin(phi)*cp_matrix + (1 - np.cos(phi))*\
-                                    (np.dot(cp_matrix,cp_matrix))
-        return R
 
 
     # -----------------------------------------------------------------------
@@ -517,8 +522,7 @@ class Manifold(object):
         if manifold is 'sphere':
 
             raise NameError('the sphere manifold is not used\n\
-            for the plot_cylinder method!\
-            Use plot_sphere method instead!')
+            for the plot_cylinder method! Use plot_sphere method instead!')
 
         if manifold not in ('sphere','cylinder'):
             raise NameError('{0} is not a recognized\n\
