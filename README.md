@@ -32,7 +32,7 @@ The three dependencies needed for ```brownian-manifold``` are distributed with [
 
 ### Posters and more visuals
 
-* For the updated poster [click here](https://github.com/hankbesser/brownian-manifold/blob/master/notebook_examples/Brownian_Motion_on_Manifolds_New_Hank.pdf)
+* For the updated poster [click here](https://github.com/hankbesser/brownian-manifold/blob/master/notebook_examples/figures/Brownian_Motion_on_Manifolds_New_Hank.pdf)
 
 * For our initial motivations in creating ```brownian-manifold``` check out our [poster](http://mcl.math.uic.edu/wp-content/uploads/2016/08/F16-BMM-poster.pdf)   
 
