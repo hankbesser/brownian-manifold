@@ -342,7 +342,7 @@ class Manifold(object):
                             surface[2],
                             rstride=1, cstride=1, linewidth=0,
                             color=surface_color, alpha=0.06)
-            ax.view_init(elev=2)
+            # ax.view_init(elev=2)
             ax.set_xticks([-self.radius_sphere,0,self.radius_sphere])
             ax.set_yticks([-self.radius_sphere,0,self.radius_sphere])
             ax.set_zticks([-self.radius_sphere,0,self.radius_sphere])
