@@ -5,7 +5,7 @@ The most basic algorithms for approximating Brownian motion entail realizations 
 
 In the context of Brownian motion on special manifolds: given a sequence of random trajectories on the manifold, the current state of the Brownian path captures relevant historical information, but, once known, is *independent* of the past (i.e. a Markov process, where the current state characterizes the process). Also, Birkhoff's ergodic theorem tells us that after a sufficient amount of time, the system evolves to where it has no memory of its initial state. The Brownian motion visits *all* parts of the manifold *without any* systematic period.  Thus, the time-*average* of the Brownian motion’s trajectory equals the space-*average* almost everywhere (i.e. Ergodic) and the probability of finding all initial points on the manifold are expected to be the same on the unit interval (i.e. uniform coverage on the manifold).
 
-To introduce numerical methods used for understanding properties of Brownian motion on manifolds we have created ```brownian-manifold```: a collection of Python tools that make simulations and visualizations easy and reproducible.
+To introduce numerical methods used for understanding properties of Brownian motion on manifolds, we have created ```brownian-manifold```: a collection of Python tools that make simulations and visualizations easy and reproducible.
 
 Currently, ```brownian-manifold``` comes with two classes:
 - ```Manifold``` helps you simulate Brownian motion on a 2-sphere or a finite cylinder. Also, helps you plot organized and visually informative manifolds/simulation data with many user-changeable parameters for each callable method.  
