@@ -1,7 +1,7 @@
 
 # brownian-manifold
 
-The most basic algorithms for approximating Brownian motion entail realizations of the Wiener process (the name for the mathematical construct of the Brownian motion) on n-dimensional Euclidean spaces that can scale to large n. However, the methods used to simulate the basic continuous-time stochastic process on Euclidean space are not directly suited for simulations on more general Riemannian manifolds.
+The most basic algorithms for approximating Brownian motion entail realizations of the Wiener process (the name for the mathematical construct of the Brownian motion) on n-dimensional Euclidean spaces that can scale to large n. However, the methods used to simulate the basic continuous-time stochastic process on a Euclidean space are not directly suited for simulations on a more general Riemannian manifold.
 
 In the context of Brownian motion on special manifolds: given a sequence of random trajectories on the manifold, the current state of the Brownian path captures relevant historical information, but, once known, is *independent* of the past (i.e. a Markov process, where the current state characterizes the process). Also, Birkhoff's ergodic theorem tells us that after a sufficient amount of time, the system evolves to where it has no memory of its initial state. The Brownian motion visits *all* parts of the manifold *without any* systematic period.  Thus, the time-*average* of the Brownian motion’s trajectory equals the space-*average* almost everywhere (i.e. Ergodic) and the probability of finding all initial points on the manifold are expected to be the same on the unit interval (i.e. uniform coverage on the manifold).
 
