@@ -43,7 +43,7 @@ class Manifold(object):
     final_time: float, total time of simulation
     (assumption: initial time of simulation is always 0)
 
-    n_steps: int, number of steps (i.e the intervals to split [0,final_time])
+    n_steps: int, number of steps (i.e the intedfgrvals to split [0,final_time])
 
     radius_sphere: float, radius of sphere
 
@@ -123,9 +123,9 @@ class Manifold(object):
         return "The manifold is a {0}!".format(self.manifold)
 
 
-    
-    
-    
+
+
+
     # -----------------------------------------------------------------------
     def _smooth_and_rotate(self):
 
@@ -197,7 +197,7 @@ class Manifold(object):
                                     (np.dot(cp_matrix,cp_matrix))
         return R
 
-    
+
     # -----------------------------------------------------------------------
     def simulate_brownian_sphere(self, manifold=None, plot=False):
         """
