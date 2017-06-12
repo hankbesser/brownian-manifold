@@ -43,7 +43,7 @@ class Manifold(object):
     final_time: float, total time of simulation
     (assumption: initial time of simulation is always 0)
 
-    n_steps: int, number of steps (i.e the intedfgrvals to split [0,final_time])
+    n_steps: int, number of steps (i.e the intervals to split [0,final_time])
 
     radius_sphere: float, radius of sphere
 
