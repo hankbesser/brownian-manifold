@@ -7,6 +7,8 @@ from mpl_toolkits.mplot3d import Axes3D
 
 #ignore the warning from * (import all functionality utils)
 from brownian_manifold.utils import *
+
+
 class Manifold(object):
     """
     Class that implements a few conveniences for simulating and
@@ -86,7 +88,8 @@ class Manifold(object):
                  radius_cylinder = 1,
                  height_cylinder = 10,
                  final_time=1,
-                 n_steps=1000):
+                 n_steps=1000,
+                 plt_interactive=True):
         """
         Initialize the object
         """
@@ -105,7 +108,13 @@ class Manifold(object):
         ###Defaults finite cylinder: radius = 1 and height = 10
         self.radius_cylinder = radius_cylinder
         self.height_cylinder = height_cylinder
-    # for debugging purposes- does not affect functionality
+
+        if plt_interactive == True:
+            plt.ion()
+        else:
+            plt.ioff()
+
+    # for debugging and appearance purposes- does not affect functionality
     #-------------------------------------------------------------
         if self.manifold not in ('sphere', 'cylinder'):
             raise NameError('{0} is not a recognized\n\
@@ -114,8 +123,18 @@ class Manifold(object):
 
     def __repr__(self):
         """An internal representation"""
-        return "{0}(manifold='{1}')".format(
-                self.__class__.__name__, self.manifold)
+        return "{0}(manifold='{1}', radius_sphere = {2},\n\
+        radius_cylinder = {3}, height_cylinder = {4}, \n\
+        final_time={5}, n_steps={6} \n\
+        --- Hence step_size = final_time / n_steps = {7:.3f})".format(
+                self.__class__.__name__,
+                self.manifold,
+                self.radius_sphere,
+                self.radius_cylinder,
+                self.height_cylinder,
+                self.final_time,
+                self.n_steps,
+                self.step_size)
 
 
     def __str__(self):
@@ -123,10 +142,7 @@ class Manifold(object):
         return "The manifold is a {0}!".format(self.manifold)
 
 
-
-
-
-    # -----------------------------------------------------------------------
+   # -----------------------------------------------------------------------
     def _smooth_and_rotate(self):
 
         """
@@ -366,7 +382,12 @@ class Manifold(object):
             cbar.ax.tick_params(labelsize=14)
             plt.tight_layout()
             plt.tick_params(labelsize=10)
-        plt.show()
+        if hasattr(plt.get_current_fig_manager(), 'window'):
+            fig_mgr = plt.get_current_fig_manager()
+            fig_mgr.window.showMinimized()
+        else:
+            plt.show()
+
         #Save the full figure..
         #fig.savefig('name_of_file')
 
@@ -457,8 +478,12 @@ class Manifold(object):
 
         if show_axes is False:
             ax.set_axis_off()
-        plt.show()
 
+        if hasattr(plt.get_current_fig_manager(), 'window'):
+            fig_mgr = plt.get_current_fig_manager()
+            fig_mgr.window.showMinimized()
+        else:
+            plt.show()
 
     # -----------------------------------------------------------------------
     def get_cylinder(self, manifold=None, plot=False):
@@ -554,5 +579,9 @@ class Manifold(object):
 
         if show_axes is False:
             ax.set_axis_off()
-        plt.show()
+        if hasattr(plt.get_current_fig_manager(), 'window'):
+            fig_mgr = plt.get_current_fig_manager()
+            fig_mgr.window.showMinimized()
+        else:
+            plt.show()
     #----------------------------------------------------------------------
